@@ -11,7 +11,7 @@ public class BallReset : MonoBehaviour
     void OnTriggerEnter(Collider collider) {
        if (!collider.CompareTag("Player")) return;
 
-        ball.position = resetPosition;
+        ball.localPosition = resetPosition;
         ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
         OnReset.Invoke();
