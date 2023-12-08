@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using System;
+using UnityEngine.Events;
 
 
 public class Teleport : MonoBehaviour
 {
     // Start is called before the first frame update
-    public static event Action onTeleported;
+    public UnityEvent OnTeleported;
+    public UnityEvent OnEnterTeleport;
     public GameObject teleportOut;
     public float time;
     private GameObject ball;
@@ -24,9 +26,10 @@ public class Teleport : MonoBehaviour
         
     }
     void OnTriggerEnter(Collider col){
-        Debug.Log("!!");
+       
 
-        if (col.gameObject.name == "Ball") { 
+        if (col.gameObject.name == "Ball") {
+            OnEnterTeleport.Invoke();
             ball = col.gameObject;
             ball.gameObject.SetActive(false);
             StartCoroutine(Wait(.5f));
@@ -43,7 +46,7 @@ public class Teleport : MonoBehaviour
     {
         ball.transform.position = teleportOut.transform.position;
         ball.SetActive(true);
-        onTeleported?.Invoke();
+        OnTeleported.Invoke();
 
 
     }

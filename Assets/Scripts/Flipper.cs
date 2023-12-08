@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public class Flipper : MonoBehaviour
 {
     [SerializeField] private UnityEvent OnHit;
+    [SerializeField] private UnityEvent OnFlip;
 
     private HingeJoint hinge;
 
@@ -31,6 +32,7 @@ public class Flipper : MonoBehaviour
     
         if (Input.GetMouseButton(mouseButton)) {
             jointSpring.targetPosition = targetPosition;
+            OnFlip.Invoke();
         }
 
         hinge.spring = jointSpring;

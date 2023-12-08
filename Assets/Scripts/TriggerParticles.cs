@@ -10,11 +10,9 @@ public class TriggerParticles : MonoBehaviour
     void Start()
     {
         ps = GetComponent<ParticleSystem>();
-        ps.Stop();
-        Teleport.onTeleported += Trigger;
+        ps.Stop();       
     }
-
-     private void Trigger() {
+     public void Trigger() {
         
         ps.Play();
         StartCoroutine(StopEmissionAfterTime(1f));
