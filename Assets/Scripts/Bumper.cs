@@ -5,7 +5,7 @@ public class Bumper : MonoBehaviour
 {
     [SerializeField] private UnityEvent OnHit;
 
-    void OnCollisionEnter(Collision collision) 
+    void OnCollisionEnter(Collision collision)
     {
         if (!collision.gameObject.CompareTag("Player")) return;
 
